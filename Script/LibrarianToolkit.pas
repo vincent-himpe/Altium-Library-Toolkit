@@ -2997,9 +2997,9 @@ Begin
     End;
 
 end;
-
+// =============================================================================
 // Menu events
-
+// =============================================================================
 
 procedure TForm1.MNU_ImportMechLayerFromFile(Sender: TObject);
 begin
@@ -3049,7 +3049,7 @@ end;
 
 procedure TForm1.MNU_RemoveUnusedLayers(Sender: TObject);
 begin
-PCB_HideUnusedMechLayers;
+     PCB_HideUnusedMechLayers;
 end;
 
 procedure TForm1.endscript(Sender: TObject);
@@ -3057,5 +3057,24 @@ begin
      // Application.Terminate; this kills altium !
     //close;
 
+end;
+
+// =============================================================================
+// Button events
+// =============================================================================
+
+procedure TForm1.RUN_ApplyDefaultStackClick(Sender: TObject);
+begin
+     PCB_ImportMechLayerDefault;
+end;
+
+procedure TForm1.RUN_RemoveUnusedMechClick(Sender: TObject);
+begin
+     PCB_HideUnusedMechLayers;
+end;
+
+procedure TForm1.RUN_ResetGridStyleClick(Sender: TObject);
+begin
+     ResetStyle;
 end;
 

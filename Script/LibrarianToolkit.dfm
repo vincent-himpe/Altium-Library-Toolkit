@@ -117,7 +117,7 @@ object Form1: TForm1
     Left = 8
     Top = 8
     Width = 831
-    Height = 488
+    Height = 520
     ActivePage = TabSheet1
     Anchors = [akLeft, akTop, akRight]
     MultiLine = True
@@ -125,6 +125,7 @@ object Form1: TForm1
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Cleanup Footprint'
+      ExplicitHeight = 458
       object Label53: TLabel
         Left = 521
         Top = 83
@@ -232,7 +233,7 @@ object Form1: TForm1
         TabOrder = 2
         OnClick = Button13Click
       end
-      object CheckBox1: TCheckBox
+      object CHK_RebuildAssemblyLayer: TCheckBox
         Left = 536
         Top = 168
         Width = 196
@@ -252,7 +253,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 4
       end
-      object CheckBox4: TCheckBox
+      object CHK_ResizeAssemblyLayer: TCheckBox
         Left = 536
         Top = 200
         Width = 196
@@ -262,7 +263,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 5
       end
-      object CheckBox5: TCheckBox
+      object CHK_ResizeCourtyard: TCheckBox
         Left = 536
         Top = 296
         Width = 196
@@ -272,7 +273,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 6
       end
-      object CheckBox6: TCheckBox
+      object CHK_RebuildCourtyardLayer: TCheckBox
         Left = 536
         Top = 264
         Width = 196
@@ -282,7 +283,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 7
       end
-      object CheckBox7: TCheckBox
+      object CHK_ResizeSilkscreenLayer: TCheckBox
         Left = 536
         Top = 360
         Width = 196
@@ -292,7 +293,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 8
       end
-      object CheckBox8: TCheckBox
+      object CHK_RebuildSilkscreenlayer: TCheckBox
         Left = 536
         Top = 344
         Width = 228
@@ -322,7 +323,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 11
       end
-      object CheckBox11: TCheckBox
+      object CHK_Fixup3D: TCheckBox
         Left = 536
         Top = 424
         Width = 196
@@ -332,7 +333,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 12
       end
-      object CheckBox12: TCheckBox
+      object CHK_ProcessDesignator: TCheckBox
         Left = 536
         Top = 216
         Width = 196
@@ -342,7 +343,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 13
       end
-      object CheckBox13: TCheckBox
+      object CHK_MarkPin1Courtyard: TCheckBox
         Left = 560
         Top = 280
         Width = 172
@@ -350,7 +351,7 @@ object Form1: TForm1
         Caption = 'Mark Pin1 on Courtyard'
         TabOrder = 14
       end
-      object CheckBox14: TCheckBox
+      object CHK_RemovePin1Dots: TCheckBox
         Left = 536
         Top = 376
         Width = 120
@@ -360,7 +361,7 @@ object Form1: TForm1
         State = cbChecked
         TabOrder = 15
       end
-      object CheckBox15: TCheckBox
+      object CHK_MarkPin1Assembly: TCheckBox
         Left = 560
         Top = 184
         Width = 276
@@ -413,6 +414,7 @@ object Form1: TForm1
         Height = 16
         Caption = '>'
         TabOrder = 20
+        OnClick = RUN_ApplyDefaultStackClick
       end
       object RUN_RemoveUnusedMech: TButton
         Left = 496
@@ -421,6 +423,7 @@ object Form1: TForm1
         Height = 16
         Caption = '>'
         TabOrder = 21
+        OnClick = RUN_RemoveUnusedMechClick
       end
       object RUN_RemoveUnusedCopper: TButton
         Left = 496
@@ -446,7 +449,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 24
       end
-      object Button27: TButton
+      object RUN_RebuildAssemblyLayer: TButton
         Left = 496
         Top = 168
         Width = 24
@@ -454,7 +457,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 25
       end
-      object Button28: TButton
+      object RUN_MarkPin1Assembly: TButton
         Left = 496
         Top = 184
         Width = 24
@@ -462,7 +465,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 26
       end
-      object Button29: TButton
+      object RUN_ProcessDesignator: TButton
         Left = 496
         Top = 216
         Width = 24
@@ -470,7 +473,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 27
       end
-      object Button30: TButton
+      object RUN_ResizeAssemblyLayer: TButton
         Left = 496
         Top = 200
         Width = 24
@@ -478,7 +481,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 28
       end
-      object Button31: TButton
+      object RUN_ResizeCourtyard: TButton
         Left = 496
         Top = 296
         Width = 24
@@ -486,7 +489,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 29
       end
-      object Button32: TButton
+      object RUN_MarkPin1Courtyard: TButton
         Left = 496
         Top = 280
         Width = 24
@@ -494,7 +497,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 30
       end
-      object Button33: TButton
+      object RUN_RebuildCourtyardLayer: TButton
         Left = 496
         Top = 264
         Width = 24
@@ -502,7 +505,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 31
       end
-      object Button34: TButton
+      object RUN_RemovePin1Dots: TButton
         Left = 496
         Top = 376
         Width = 24
@@ -510,7 +513,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 32
       end
-      object Button35: TButton
+      object RUN_ResizeSilkscreenLayer: TButton
         Left = 496
         Top = 360
         Width = 24
@@ -518,7 +521,7 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 33
       end
-      object Button36: TButton
+      object RUN_RebuildSilkscreenlayer: TButton
         Left = 496
         Top = 344
         Width = 24
@@ -526,13 +529,50 @@ object Form1: TForm1
         Caption = '>'
         TabOrder = 34
       end
-      object Button37: TButton
+      object RUN_Fixup3D: TButton
         Left = 496
         Top = 424
         Width = 24
         Height = 16
         Caption = '>'
         TabOrder = 35
+      end
+      object CHK_UnlockObjects: TCheckBox
+        Left = 536
+        Top = 440
+        Width = 196
+        Height = 16
+        Caption = 'Unlock Objects'
+        Checked = True
+        State = cbChecked
+        TabOrder = 36
+      end
+      object RUN_UnlockObjects: TButton
+        Left = 496
+        Top = 440
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 37
+      end
+      object CHK_ResetGridStyle: TCheckBox
+        Left = 536
+        Top = 456
+        Width = 196
+        Height = 16
+        Caption = 'Reset Grid Style'
+        Checked = True
+        State = cbChecked
+        TabOrder = 38
+      end
+      object RUN_ResetGridStyle: TButton
+        Left = 496
+        Top = 456
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 39
+        OnClick = RUN_ResetGridStyleClick
       end
     end
     object TabSheet2: TTabSheet
@@ -2327,6 +2367,7 @@ object Form1: TForm1
     end
     object TabSheet4: TTabSheet
       Caption = 'Settings'
+      ExplicitHeight = 454
       object GroupBox10: TGroupBox
         Left = 8
         Top = 8
@@ -2803,6 +2844,7 @@ object Form1: TForm1
     end
     object TabSheet5: TTabSheet
       Caption = 'SchLib PATCHER'
+      ExplicitHeight = 454
       object Label32: TLabel
         Left = 16
         Top = 56

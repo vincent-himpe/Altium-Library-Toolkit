@@ -6,7 +6,8 @@
 { Support Functions                                                            }
 { -----------------------------------------------------------------------------}
 
-
+const
+      SmallGrid = 0.025;
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Helper : roundup to 1 decimal  2.1 = 2.1, 2.11 = 2.12
@@ -116,18 +117,54 @@ end;
 // Process : Reset Drawing Style in the library
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 Procedure ResetStyle;
+var
+   tt : tunit;
+   tcc : integer;
+   PCBDoc : IPCB_Board;
+   PCBSysOpts : IPCB_SystemOptions;
+   a,b : widestring;
+
+    Board : IPCB_Board;
+    Gridmgr : IPCB_GridManagerPCBlib;
+    PlcmGrid : IPCB_PlacementGrid;
+    S        : String;
+
 begin
      PCBServer.PreProcess;
-     Clearlog;
+     //Clearlog;
      CurrentLib := PCBServer.GetCurrentPCBLibrary;                                                             // Grab the library
+     Board := PCBServer.GetCurrentPCBBoard;
+
+
      If CurrentLib = Nil Then
      Begin
-        LogMSG('This is not a PCB library document');
+        LogMSG('ERR : This is not a PCB library document');
         Exit;
      End;
-     currentlib.Board.DrawDotGrid :=false;                                                                     // Switch to line grid
+     if board = nil then
+     begin
+        LogMSG('ERR : This is not a PCB library document');
+        exit;
+     end;
+
+     LogMSG('RUN : Grid Style Reset');
+
+     Gridmgr := Board.GetState_GridManager;
+     PlcmGrid := Gridmgr.FindApplicableGridByXY(0,0);
+     plcmgrid.DrawMode :=0;                         // 0 = line , 1 = dot , 2 = hide
+     plcmgrid.DrawModeLarge :=0;
+
+
+  //   logmsg('Color:' + ColorToString(PlcmGrid.Color));
+  //   logmsg('ColorLarge:' + ColorToString(PlcmGrid.ColorLarge));
+     PlcmGrid.Color : = StringToColor('$005C4D4D');
+     PlcmGrid.ColorLarge := StringToColor('$00908D91');
+     //currentlib.Board.DrawDotGrid :=false;                                                                     // Switch to line grid
+
      currentlib.Board.ComponentGridSize := MMsToCoord(SmallGrid);                                              // set grid to 0.025mm
+
      currentlib.board.DisplayUnit := eImperial;                                                                // switch to metric ... YES it IS a bug. eImperial means metric in altium speak ...
+
      currentlib.board.DrawMode(eArcObject) :=eDrawFull;                                                        // Dset drawing mode
      currentlib.board.DrawMode(eFillObject) :=eDrawFull;
      currentlib.board.DrawMode(ePadObject) :=eDrawFull;
@@ -140,9 +177,21 @@ begin
      currentlib.board.DrawMode(eArcObject) :=eDrawFull;
      currentlib.board.DrawMode(eRegionObject) :=eDrawFull;
      currentlib.board.DrawMode(eComponentBodyObject) :=eDrawFull;
+
+     currentlib.Board.BigVisibleGridMultFactor :=10        ;
+     currentlib.Board.BigVisibleGridSize := MMsToCoord(SmallGrid);
+     currentlib.Board.BigVisibleGridUnit := eMetric;
+
+     currentlib.Board.SnapGridSize := MMsToCoord(SmallGrid);
+     currentlib.Board.SnapGridUnit :=eMetric        ;
+
+     currentlib.Board.VisibleGridSize:= MMsToCoord(SmallGrid);
+     currentlib.Board.VisibleGridUnit :=eMetric;
+     currentlib.Board.VisibleGridMultFactor :=10;
+
      unlock_process;
-     LogMSG('De-Carlified');
      refresh_screen;
+     LogMSG('RUN : Completed');
 end;
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
