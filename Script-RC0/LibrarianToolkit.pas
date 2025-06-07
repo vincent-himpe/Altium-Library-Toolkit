@@ -19,7 +19,7 @@ const
      SMTsoldermask = 0.05; // was 0.075
      CourtyardOffset = 0.25;
      CourtyardWidth = 0.05;
-
+     SmallGrid = 0.025;
      th_spokewidth   = 0.1;     // soldermmask spoke width
      th_viaringwidth = 0.076;   // cutout on thermal via ( encroaching distance )
      th_ringwidth    = 0.20;    // ring width on via
@@ -28,107 +28,35 @@ const
      solder_cutout_via = 0.508+ th_viaringwidth+th_viaringwidth+0.1;  // viahole + encroach +0.1
   //   thermalpitch =1.1;
 var
-
-   // a footprint object to be used while passing the footprint to a subfunction
-
-   Global_Currentfootprint           : IPCB_LibComponent;
-
-   // these variables are populated by the GetUserSettings routine
-
-   Settings_Courtyard_Linewidth      : integer;
-   Settings_Courtyard_Clearance      : integer;
-   Settings_courtyard_centroidsize   : integer;
-   settings_courtyard_centroidlength : integer;
-
-   settings_assembly_linewidth       : integer;
-   settings_assembly_padwidth        : integer;
-
-   settings_silkscreen_linewidth     : integer;
-   settings_silkscreen_clearance     : integer;
-
-   settings_soldermask_smt           : integer;
-   settings_soldermask_mech          : integer;
-   settings_soldermask_viahole       : integer;
-   settings_soldermask_th            : integer;
-
-   settings_layers_3dbody            : integer;
-   settings_layers_assembly          : integer;
-   settings_layers_courtyard         : integer;
-   settings_layers_centroid          : integer;
-   settings_layers_designator        : integer;
-
-   settings_pastemask_retraction     : integer;
-
-   settings_layers_3dbody            : integer;
-   settings_layers_assembly          : integer;
-   settings_layers_courtyard         : integer;
-   settings_layers_centroid          : integer;
-   settings_layers_designator        : integer;
-
-   settings_AppplyDefaultStack       : boolean;
-   settings_RemoveUnusedMechanicals  : boolean;
-   settings_RemoveUnusedCopper       : boolean;
-
-   settings_apply_2221_padsizing     : boolean;
-   settings_Pads_RoundSMDPads        : boolean;
-   settings_Pads_ThruShape           : integer; // was settings_pin1
-   settings_Pads_ReshapeThruPin1     : boolean;
-
-   settingS_rebuild_assembly         : boolean;
-   settings_mark_pin1_on_assembly    : boolean;
-
-   settings_remove_pin1dots          : boolean;
-   settings_mark_pin1_on_courtyard   : boolean;
-
-   settings_Assembly_Rebuild         : boolean;
-   settings_Assembly_MarkPinOne      : boolean;
-   settings_Assembly_MarkPins        : boolean;
-   settings_Assembly_Resize          : boolean;
-
-   settings_Designater_Process       : boolean;
-   settings_Designator_Add           : boolean;
-   settingS_Designator_Cleanup       : boolean;
-   settingS_Designator_Remove        : boolean;
-
-   Settings_Courtyard_Rebuild        : boolean;
-   settings_Courtyard_MarkPin1       : boolean;
-   settings_Courtyard_pin1style      : boolean;
-   settings_Courtyard_Resize         : boolean;
-
-   settings_SilkScreen_Rebuild       : boolean;
-   settings_Silkscreen_Resize        : boolean;
-   settings_Silkscreen_Wipe          : boolean;
-
-   settings_pastemask_retract        : boolean;
-
-   settings_Misc_RemovePin1Dots      : boolean;
-   settings_Misc_Fixup3Dmodels       : boolean;
-   settings_Misc_UnlockObjects       : boolean;
-   settings_Misc_ResetGridstyle      : boolean;
-   settings_Misc_GarbageCollector    : boolean;
-   settings_Misc_ProcessDeisgnator   : boolean;
-   settings_Misc_RetractPaste        : boolean;
-
-   // Dirty :
-
-
-
-
-
+   global_currentfootprint         : IPCB_LibComponent;                         // a footprint object to be used while passing the footprint to a subfunction
+   settings_courtyard_linewidth    : integer;
+   settings_courtyard_clearance    : integer;
+   settings_courtyard_centroidsize : integer;
+   settings_assembly_linewidth     : integer;
+   settings_assembly_padwidth      : integer;
+   settings_silkscreen_linewidth   : integer;
+   settings_silkscreen_clearance   : integer;
+   settings_apply_2221_padsizing   : boolean;
+   settings_remove_pin1dots        : boolean;
+   settings_mark_pin1_on_courtyard : boolean;
+   settings_mark_pin1_on_assembly  : boolean;
    settings_mark_pins_on_assembly  : boolean;
    settings_rebuild_courtyard      : boolean;
-
+   settingS_rebuild_assembly       : boolean;
    settings_rebuild_silkscreen     : boolean;
    settings_designator_add         : boolean;
    settings_designator_remove      : boolean;
-
+   settings_pastemask_retraction   : integer;
    settings_pastemask_retract      : boolean;
   // settings_thermalfarm_holesize   : integer;
   // settings_thermalfarm_backpadsize : integer;
   // settings_thermalfarm_toppadsize : integer;
   // settings_thermalfarm_midpadsize : integer;
   // settings_thermalfarm_pitch      : integer;
-
+   settings_soldermask_smt         : integer;
+   settings_soldermask_mech        : integer;
+   settings_soldermask_viahole     : integer;
+   settings_soldermask_th          : integer;
    settings_wipe_silkscreen        : boolean;
    settings_courtyard_pin1style    : integer;
    settings_processall             : boolean;
@@ -237,7 +165,30 @@ end;
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Process : Cleanup the Footprint
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Helper : dummy routine
+Procedure skeleton;
+var
+     ObjIterator          : IPCB_GroupIterator;
+     APrimitive           : IPCB_Primitive;
+     foundsomething       : integer;
+begin
+     footprint.BeginModify;
+     ObjIterator := Footprint.GroupIterator_Create;
+     ObjIterator.SetState_FilterAll;
+     APrimitive := ObjIterator.FirstPCBObject;
+     foundsomething := 0;
+     While (APrimitive <> Nil) Do
+     begin
+            // processing block
 
+            APrimitive := ObjIterator.NextPCBObject;
+     end;
+     Footprint.GroupIterator_Destroy(ObjIterator);
+     if foundsomething = 1 then begin
+        LogMSG('  -> Deleted Restriced Stuff');
+     end;
+     footprint.EndModify;
+end;
 
 
 procedure Resizedesignator;
@@ -549,8 +500,6 @@ begin
            Footprint.LayerUsed(eInternalPlane15) :=false;
        footprint.endModify;
 end;
-
-
 // Helper : Get user settings into data array
 procedure GetSettings;
 var
@@ -649,17 +598,13 @@ begin
      begin
             // processing block
             aprimitive.Selected :=false;
-            if aprimitive.Layer = settings_layers_courtyard then
-            begin
-                 aprimitive.Selected := true;
-                 foundsomething :=1;
-            end;
+            if aprimitive.Layer = eMechanical15 then aprimitive.Selected := true;
             APrimitive := ObjIterator.NextPCBObject;
      end;
      Footprint.GroupIterator_Destroy(ObjIterator);
      resetparameters;
-     if foundsomething = 1 then runprocess('PCB:DeleteObjects');
-
+    // runprocess('PCB:Clear');
+        runprocess('PCB:DeleteObjects');
      // ----------------------------------------------------------------------------------------
      // time to rebuild it
      // figure out how large this thing is ...
@@ -1267,7 +1212,7 @@ begin
         PCBServer.SendMessageToRobots(footprint.I_ObjectAddress,c_Broadcast,PCBM_BoardRegisteration,atrack.I_ObjectAddress);
         pcbserver.PostProcess;
 
-        if settings_Assembly_MarkPins = true then begin
+        if settings_mark_pins_on_assembly = true then begin
            AssemblyLayerMakePads;
 
         end;
@@ -1485,7 +1430,7 @@ begin
                   if (APrimitive.HoleType = eRoundHole) then begin
                      // set pin 1 rectangle: others round
                      if APrimitive.Name = '1' then begin
-                       if settings_Pads_ThruShape =1 then  APrimitive.topshape := eRectangular;
+                       if settings_pin1 =1 then  APrimitive.topshape := eRectangular;
                        if settings_pin1 =2 then  APrimitive.topshape := eRounded;
                      end
                      else begin
@@ -1711,8 +1656,8 @@ begin
        RunProcess('PCB:Zoom');
        LogMSG('-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-');
        footprint := currentlib.CurrentComponent;
-       if footprint.Name<> 'STARTUP' then begin
-          LogMSG ('    : Processing Part : ' + footprint.name);
+       if footprint.Name<> '---SYMBOLS' then begin
+          LogMSG ('Processing Part : ' + footprint.name);
           DeleterestrictedStuff;
           AssignHeight;
           FixDesignator;
@@ -1721,9 +1666,9 @@ begin
           Padprocessor;
               // it is important that the courtyard / assembly / silkscreen builders are run AFTER the pad processor
               // as the padprocessor extracts the pin 1 information !
-          if settings_Assembly_Rebuild = true then BuildAssembly;
-          if Settings_Courtyard_Rebuild = true then RebuildCourtyard;
-          if settings_SilkScreen_Rebuild = true then RebuildSilkScreen;
+          if settingS_rebuild_assembly = true then BuildAssembly;
+          if settings_rebuild_courtyard = true then RebuildCourtyard;
+          if settings_rebuild_silkscreen = true then RebuildSilkScreen;
               // if more than 2 smt pins : make pin 1 rectangular
               //      if (maxpinnumber > 2) then begin
               //         pin1pad.stackShapeOnLayer(etoplayer) := eRectangular;
@@ -1731,7 +1676,7 @@ begin
               //     end;
           end
           else begin
-              LogMSG ('    : Skipped STARTUP Part ');
+              LogMSG ('Skipped Librarian Part : ' + footprint.name);
           end;
           CurrentLib.board.ViewManager_FullUpdate      ;
 end;
@@ -3132,16 +3077,4 @@ procedure TForm1.RUN_ResetGridStyleClick(Sender: TObject);
 begin
      ResetStyle;
 end;
-
-procedure TForm1.RUN_UnlockObjectsClick(Sender: TObject);
-begin
-     UnlockAll;
-end;
-
-procedure TForm1.RUN_Fixup3DClick(Sender: TObject);
-begin
-     LibClean_Startup;
-     AssignHeight;
-end;
-
 

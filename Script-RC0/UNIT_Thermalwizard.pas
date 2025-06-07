@@ -13,6 +13,94 @@ end;
 
 
 
+ {
+   global_currentfootprint         : IPCB_LibComponent;                         // a footprint object to be used while passing the footprint to a subfunction
+   settings_courtyard_linewidth    : integer;
+   settings_courtyard_clearance    : integer;
+   settings_courtyard_centroidsize : integer;
+   settings_assembly_linewidth     : integer;
+   settings_assembly_padwidth      : integer;
+   settings_silkscreen_linewidth   : integer;
+   settings_silkscreen_clearance   : integer;
+   settings_apply_2221_padsizing   : boolean;
+   settings_remove_pin1dots        : boolean;
+   settings_mark_pin1_on_courtyard : boolean;
+   settings_mark_pin1_on_assembly  : boolean;
+   settings_mark_pins_on_assembly  : boolean;
+   settings_rebuild_courtyard      : boolean;
+   settingS_rebuild_assembly       : boolean;
+   settings_rebuild_silkscreen     : boolean;
+   settings_designator_add         : boolean;
+   settings_designator_remove      : boolean;
+   settings_pastemask_retraction   : integer;
+   settings_pastemask_retract      : boolean;
+   settings_thermalfarm_holesize   : integer;
+   settings_thermalfarm_backpadsize : integer;
+   settings_thermalfarm_toppadsize : integer;
+   settings_thermalfarm_midpadsize : integer;
+   settings_thermalfarm_pitch      : integer;
+   settings_soldermask_smt         : integer;
+   settings_soldermask_mech        : integer;
+   settings_soldermask_viahole     : integer;
+   settings_soldermask_th          : integer;
+   settings_wipe_silkscreen        : boolean;
+   settings_courtyard_pin1style    : integer;
+   settings_processall             : boolean;
+
+   settings_thermal_holesize       : integer;
+   settings_thermal_TopPad         : integer;
+   settings_thermal_MidPad         : integer;
+   settings_thermal_BottomPad      : integer;
+   settings_thermal_pitch          : integer;
+   settings_thermal_tilesize       : integer;
+   settings_thermal_minimumtile    : integer;
+   settings_thermal_masktype       : integer;
+   thermalpad                      : ipcb_pad;
+
+   Pin1Pad                         : IPCb_PAD;                                           // storage for the object holding pin1
+   Pin1Bound                       : tcoordrect;                                         // a spatial entity storing the boundary of pin 1
+   SMTPin1Found                    : boolean;
+   Pin1Found                       : boolean;
+
+   // ------------------------- old variables. needs cleanup --------------------
+
+     logbook              : Tstring;
+     maxx                 : integer;                                            // used for footprint boundary calculation : holds the maximum x of copper or M13 objects
+     minx                 : integer;                                            // used for footprint boundary calculation : holds the minimum x of copper or M13 objects
+     maxy                 : integer;                                            // used for footprint boundary calculation : holds the maximum y of copper or M13 objects
+     miny                 : integer;                                            // used for footprint boundary calculation : holds the minimum y of copper or M13 objects
+     boundarea            : tcoordrect;                                         // a spatial entity storing the boundary of an object
+
+     m13bound             : tcoordrect;                                         // a spatial entity storing the boundary of all m13 objects
+     CurrentLib           : IPCB_Library;                                       // holds the current library
+     APrimitive           : IPCB_Primitive;                                     // the primitive under investigation
+     APrimitive2          : IPCB_Primitive2;                                    // a temporary storage for a primitive
+     afill                : ipcb_fill;                                          // a fill type object
+     APad2                : IPCB_Pad2;                                          // a pad2 type object (altium has 3 pad types : Pad, Pad2 and Pad3)
+     APad3                : IPCB_Pad3;                                          // a pad2 type object
+
+     TextObj              : IPCB_Text;
+     FootprintIterator    : IPCB_LibraryIterator;
+     ObjIterator          : IPCB_GroupIterator;
+     Footprint            : IPCB_LibComponent;
+     aVia                 : IPCB_Via;
+     aPad                 : iPCB_Pad;
+     aTrack               : iPCB_track;
+     pinnumber            : integer;
+     holesize             : real;
+     padsize              : real;
+     ViaCache             : TPadCache;
+     descr                : Tstring;
+     blah                 : integer;
+     Tracklist            : TInterfaceList;
+//   thermal wizard variables
+     th_brd               : IPCB_Board;
+     th_comp              : IPCB_Component;
+     th_via               : IPCB_Via;
+     th_nettring          : tstring;
+     th_net               : ipcb_net;
+     }
+
 
 
 

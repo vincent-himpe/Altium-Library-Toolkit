@@ -134,7 +134,7 @@ begin
      //Clearlog;
      CurrentLib := PCBServer.GetCurrentPCBLibrary;                                                             // Grab the library
      Board := PCBServer.GetCurrentPCBBoard;
-      LogMSG('RUN : ResetStyle');      
+
 
      If CurrentLib = Nil Then
      Begin
@@ -147,7 +147,7 @@ begin
         exit;
      end;
 
-
+     LogMSG('RUN : Grid Style Reset');
 
      Gridmgr := Board.GetState_GridManager;
      PlcmGrid := Gridmgr.FindApplicableGridByXY(0,0);
@@ -191,7 +191,7 @@ begin
 
      unlock_process;
      refresh_screen;
-     LogMSG('END : ResetStyle');
+     LogMSG('RUN : Completed');
 end;
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -231,46 +231,6 @@ Begin
     Finally
         //CurrentLib.LibraryIterator_Destroy(FootprintIterator);
     End;
-    PCBServer.PostProcess;
-    refresh_screen;
-End;
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Process : Unlock al Primitves
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-Procedure UnlockAll;
-Begin
-     PCBServer.PreProcess;
-     LogMSG('RUN : UnlockAll');
-     //Clearlog;
-     CurrentLib := PCBServer.GetCurrentPCBLibrary;                                                             // Grab the library
-     If CurrentLib = Nil Then
-     Begin
-        LogMSG('ERR : This is not a PCB library document');
-        Exit;
-     End;                                                                                                      // run any hanging commands first and cleanup the command stack
-   //  FootprintIterator := CurrentLib.LibraryIterator_Create;
-   //  FootprintIterator.SetState_FilterAll;
-     Try
-   //     Footprint := FootprintIterator.FirstPCBObject; // IPCB_LibComponent
-   //     While Footprint <> Nil Do
-   //     Begin
-           footprint := currentlib.CurrentComponent;
-           ObjIterator := Footprint.GroupIterator_Create;
-           ObjIterator.SetState_FilterAll;
-           APrimitive := ObjIterator.FirstPCBObject;
-           While (APrimitive <> Nil) Do
-           Begin
-                 Aprimitive.Moveable :=true;
-                 APrimitive := ObjIterator.NextPCBObject;
-           end;
-           Footprint.GroupIterator_Destroy(ObjIterator);
-           //Footprint := FootprintIterator.NextPCBObject;
-       // End;
-    Finally
-        //CurrentLib.LibraryIterator_Destroy(FootprintIterator);
-    End;
-    LogMSG('END : UnlockAll');
     PCBServer.PostProcess;
     refresh_screen;
 End;

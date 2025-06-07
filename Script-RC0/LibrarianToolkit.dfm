@@ -2,8 +2,8 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Librarian Toolkit'
-  ClientHeight = 857
-  ClientWidth = 908
+  ClientHeight = 564
+  ClientWidth = 924
   Color = clWindow
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -14,8 +14,8 @@ object Form1: TForm1
   OldCreateOrder = False
   OnCreate = Form1Create
   DesignSize = (
-    908
-    857)
+    924
+    564)
   PixelsPerInch = 96
   TextHeight = 13
   object GroupBox2: TGroupBox
@@ -23,6 +23,7 @@ object Form1: TForm1
     Top = 0
     Width = 136
     Height = 488
+    Anchors = [akTop, akRight]
     Caption = 'Tools'
     TabOrder = 0
     DesignSize = (
@@ -115,22 +116,97 @@ object Form1: TForm1
   object PageControl1: TPageControl
     Left = 8
     Top = 8
-    Width = 760
-    Height = 848
+    Width = 831
+    Height = 520
     ActivePage = TabSheet1
-    Anchors = [akLeft, akTop, akBottom]
+    Anchors = [akLeft, akTop, akRight]
     MultiLine = True
     TabHeight = 24
     TabOrder = 1
     object TabSheet1: TTabSheet
       Caption = 'Cleanup Footprint'
-      ExplicitWidth = 819
-      DesignSize = (
-        752
-        814)
+      ExplicitHeight = 458
+      object Label53: TLabel
+        Left = 521
+        Top = 83
+        Width = 27
+        Height = 13
+        Caption = 'Pads'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label54: TLabel
+        Left = 521
+        Top = 3
+        Width = 38
+        Height = 13
+        Caption = 'Layers'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label55: TLabel
+        Left = 521
+        Top = 147
+        Width = 90
+        Height = 13
+        Caption = 'Assembly Layer'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label56: TLabel
+        Left = 521
+        Top = 243
+        Width = 92
+        Height = 13
+        Caption = 'Courtyard Layer'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label57: TLabel
+        Left = 521
+        Top = 323
+        Width = 93
+        Height = 13
+        Caption = 'Silkscreen Layer'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label58: TLabel
+        Left = 521
+        Top = 403
+        Width = 79
+        Height = 13
+        Caption = 'Miscellaneous'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
       object Memo1: TMemo
-        Left = 8
-        Top = 0
+        Left = 0
+        Top = -2
         Width = 468
         Height = 404
         Lines.Strings = (
@@ -157,487 +233,354 @@ object Form1: TForm1
         TabOrder = 2
         OnClick = Button13Click
       end
-      object GroupBox20: TGroupBox
-        Left = 488
-        Top = 0
-        Width = 260
-        Height = 74
-        Anchors = [akTop, akRight]
-        Caption = 'Layers'
+      object CHK_RebuildAssemblyLayer: TCheckBox
+        Left = 536
+        Top = 168
+        Width = 196
+        Height = 16
+        Caption = 'Rebuild Assembly Layer'
+        Checked = True
+        State = cbChecked
         TabOrder = 3
-        ExplicitLeft = 480
-        object CHK_ApplyDefaultStack: TCheckBox
-          Left = 44
-          Top = 16
-          Width = 196
-          Height = 16
-          Caption = 'Apply Default Stack'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-        end
-        object CHK_RemoveUnusedMech: TCheckBox
-          Left = 44
-          Top = 32
-          Width = 196
-          Height = 16
-          Caption = 'Remove Unused Mechanicals'
-          Checked = True
-          State = cbChecked
-          TabOrder = 1
-        end
-        object CHK_RemoveUnusedCopper: TCheckBox
-          Left = 44
-          Top = 48
-          Width = 196
-          Height = 16
-          Caption = 'Remove Unused Copper'
-          Checked = True
-          State = cbChecked
-          TabOrder = 2
-        end
-        object RUN_RemoveUnusedCopper: TButton
-          Left = 8
-          Top = 48
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 3
-        end
-        object RUN_RemoveUnusedMech: TButton
-          Left = 8
-          Top = 32
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 4
-          OnClick = RUN_RemoveUnusedMechClick
-        end
-        object RUN_ApplyDefaultStack: TButton
-          Left = 8
-          Top = 16
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 5
-          OnClick = RUN_ApplyDefaultStackClick
-        end
       end
-      object GroupBox21: TGroupBox
-        Left = 488
-        Top = 80
-        Width = 260
-        Height = 74
-        Anchors = [akTop, akRight]
-        Caption = 'Pads'
+      object CHK_ApplyIPC2221: TCheckBox
+        Left = 536
+        Top = 104
+        Width = 196
+        Height = 16
+        Caption = 'Apply IPC2221 Pad sizing (Thru-Hole)'
+        Checked = True
+        State = cbChecked
         TabOrder = 4
-        ExplicitLeft = 480
-        object RUN_ApplyIPC2221: TButton
-          Left = 8
-          Top = 16
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 0
-        end
-        object CHK_ApplyIPC2221: TCheckBox
-          Left = 44
-          Top = 16
-          Width = 196
-          Height = 16
-          Caption = 'Apply IPC2221 Pad sizing (Thru-Hole)'
-          Checked = True
-          State = cbChecked
-          TabOrder = 1
-        end
-        object CHK_ApplyRoundSMD: TCheckBox
-          Left = 44
-          Top = 32
-          Width = 196
-          Height = 16
-          Caption = 'Round SMD Pads'
-          Checked = True
-          State = cbChecked
-          TabOrder = 2
-        end
-        object RUN_ApplyRoundSMD: TButton
-          Left = 8
-          Top = 32
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 3
-        end
-        object CHK_Pads_ProcessThruPads: TCheckBox
-          Left = 44
-          Top = 48
-          Width = 196
-          Height = 16
-          Caption = 'Reshape Pin1 (Thru Pads)'
-          Checked = True
-          State = cbChecked
-          TabOrder = 4
-        end
-        object RUN_Pads_ProcessThruPads: TButton
-          Left = 8
-          Top = 48
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 5
-        end
       end
-      object GroupBox22: TGroupBox
-        Left = 488
-        Top = 154
-        Width = 260
-        Height = 96
-        Anchors = [akTop, akRight]
-        Caption = 'Assembly Layer'
+      object CHK_ResizeAssemblyLayer: TCheckBox
+        Left = 536
+        Top = 200
+        Width = 196
+        Height = 16
+        Caption = 'Resize Assembly Layer'
+        Checked = True
+        State = cbChecked
         TabOrder = 5
-        ExplicitLeft = 480
-        object CHK_RebuildAssemblyLayer: TCheckBox
-          Left = 44
-          Top = 16
-          Width = 196
-          Height = 16
-          Caption = 'Rebuild Assembly Layer'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-        end
-        object chk_Assembly_Markpins: TCheckBox
-          Left = 68
-          Top = 32
-          Width = 160
-          Height = 16
-          Caption = 'Mark Pins (Outline)'
-          Checked = True
-          State = cbChecked
-          TabOrder = 1
-        end
-        object CHK_Assembly_MarkPin1: TCheckBox
-          Left = 68
-          Top = 48
-          Width = 176
-          Height = 16
-          Caption = 'Mark Pin 1 on Assembly'
-          Checked = True
-          State = cbChecked
-          TabOrder = 2
-        end
-        object RUN_RebuildAssemblyLayer: TButton
-          Left = 8
-          Top = 16
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 3
-        end
-        object CHK_ResizeAssemblyLayer: TCheckBox
-          Left = 44
-          Top = 64
-          Width = 196
-          Height = 16
-          Caption = 'Resize Assembly Layer'
-          Checked = True
-          State = cbChecked
-          TabOrder = 4
-        end
-        object RUN_ResizeAssemblyLayer: TButton
-          Left = 8
-          Top = 64
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 5
-        end
       end
-      object GroupBox23: TGroupBox
-        Left = 488
-        Top = 250
-        Width = 260
-        Height = 88
-        Anchors = [akTop, akRight]
-        Caption = 'Courtyard Layer'
+      object CHK_ResizeCourtyard: TCheckBox
+        Left = 536
+        Top = 296
+        Width = 196
+        Height = 16
+        Caption = 'Resize Courtyard Layer'
+        Checked = True
+        State = cbChecked
         TabOrder = 6
-        ExplicitLeft = 480
-        object CHK_RebuildCourtyardLayer: TCheckBox
-          Left = 44
-          Top = 16
-          Width = 196
-          Height = 16
-          Caption = 'Rebuild Courtyard Layer'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-        end
-        object RUN_RebuildCourtyardLayer: TButton
-          Left = 8
-          Top = 16
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 1
-        end
-        object RUN_MarkPin1Courtyard: TButton
-          Left = 8
-          Top = 40
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 2
-        end
-        object CHK_MarkPin1Courtyard: TCheckBox
-          Left = 44
-          Top = 40
-          Width = 72
-          Height = 16
-          Caption = 'Mark Pin1'
-          TabOrder = 3
-        end
-        object cmb_CourtYardPin1Style: TComboBox
-          Left = 124
-          Top = 37
-          Width = 116
-          Height = 21
-          Style = csDropDownList
-          ItemIndex = 1
-          TabOrder = 4
-          Text = '1 - Arrow to edge'
-          Items.Strings = (
-            '0 - None'
-            '1 - Arrow to edge'
-            '2 - Arrow to Center'
-            '3 - Box'
-            '4 - Box + diagonal')
-        end
-        object CHK_ResizeCourtyard: TCheckBox
-          Left = 44
-          Top = 64
-          Width = 136
-          Height = 16
-          Caption = 'Resize Courtyard Layer'
-          Checked = True
-          State = cbChecked
-          TabOrder = 5
-        end
-        object RUN_ResizeCourtyard: TButton
-          Left = 8
-          Top = 64
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 6
-        end
       end
-      object GroupBox24: TGroupBox
-        Left = 488
-        Top = 338
-        Width = 260
-        Height = 80
-        Anchors = [akTop, akRight]
-        Caption = 'Silkscreen'
+      object CHK_RebuildCourtyardLayer: TCheckBox
+        Left = 536
+        Top = 264
+        Width = 196
+        Height = 16
+        Caption = 'Rebuild Courtyard Layer'
+        Checked = True
+        State = cbChecked
         TabOrder = 7
-        ExplicitLeft = 480
-        object CHK_RebuildSilkscreenlayer: TCheckBox
-          Left = 44
-          Top = 24
-          Width = 228
-          Height = 16
-          Caption = 'Rebuild Silkscreen Layer (experimental)'
-          Checked = True
-          State = cbChecked
-          TabOrder = 0
-        end
-        object RUN_RebuildSilkscreenlayer: TButton
-          Left = 8
-          Top = 24
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 1
-        end
-        object RUN_ResizeSilkscreenLayer: TButton
-          Left = 8
-          Top = 40
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 2
-        end
-        object CHK_ResizeSilkscreenLayer: TCheckBox
-          Left = 44
-          Top = 40
-          Width = 196
-          Height = 16
-          Caption = 'Resize Silkscreen Layer'
-          Checked = True
-          State = cbChecked
-          TabOrder = 3
-        end
-        object CHK_Silkscreen_Wipe: TCheckBox
-          Left = 44
-          Top = 56
-          Width = 196
-          Height = 16
-          Caption = 'Wipe Silkscreen Layer'
-          TabOrder = 4
-        end
-        object RUN_Silkscreen_Wipe: TButton
-          Left = 8
-          Top = 56
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 5
-        end
       end
-      object GroupBox25: TGroupBox
-        Left = 488
-        Top = 418
-        Width = 260
-        Height = 136
-        Anchors = [akTop, akRight]
-        Caption = 'Miscellaneous'
+      object CHK_ResizeSilkscreenLayer: TCheckBox
+        Left = 536
+        Top = 360
+        Width = 196
+        Height = 16
+        Caption = 'Resize Silkscreen Layer'
+        Checked = True
+        State = cbChecked
         TabOrder = 8
-        ExplicitLeft = 480
-        object CHK_PasteMask_retract: TCheckBox
-          Left = 44
-          Top = 112
-          Width = 128
-          Height = 16
-          Caption = 'Retract Paste Mask'
-          TabOrder = 0
-        end
-        object CHK_ProcessDesignator: TCheckBox
-          Left = 44
-          Top = 96
-          Width = 196
-          Height = 16
-          Caption = 'Process DESIGNATOR string'
-          Checked = True
-          State = cbChecked
-          TabOrder = 1
-        end
-        object CHK_GarbageCollector: TCheckBox
-          Left = 44
-          Top = 80
-          Width = 196
-          Height = 16
-          Caption = 'Garbage Collector'
-          Checked = True
-          State = cbChecked
-          TabOrder = 2
-        end
-        object CHK_ResetGridStyle: TCheckBox
-          Left = 44
-          Top = 64
-          Width = 196
-          Height = 16
-          Caption = 'Reset Grid Style'
-          Checked = True
-          State = cbChecked
-          TabOrder = 3
-        end
-        object CHK_UnlockObjects: TCheckBox
-          Left = 44
-          Top = 48
-          Width = 196
-          Height = 16
-          Caption = 'Unlock Objects'
-          Checked = True
-          State = cbChecked
-          TabOrder = 4
-        end
-        object CHK_Fixup3D: TCheckBox
-          Left = 44
-          Top = 32
-          Width = 196
-          Height = 16
-          Caption = 'Fixup 3D models and data'
-          Checked = True
-          State = cbChecked
-          TabOrder = 5
-        end
-        object CHK_RemovePin1Dots: TCheckBox
-          Left = 44
-          Top = 16
-          Width = 196
-          Height = 16
-          Caption = 'Remove Pin 1 Dots (All layers)'
-          Checked = True
-          State = cbChecked
-          TabOrder = 6
-        end
-        object Button23: TButton
-          Left = 8
-          Top = 112
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 7
-        end
-        object RUN_ProcessDesignator: TButton
-          Left = 8
-          Top = 96
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 8
-          OnClick = RUN_ResetGridStyleClick
-        end
-        object Button22: TButton
-          Left = 8
-          Top = 80
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 9
-          OnClick = RUN_ResetGridStyleClick
-        end
-        object RUN_ResetGridStyle: TButton
-          Left = 8
-          Top = 64
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 10
-          OnClick = RUN_ResetGridStyleClick
-        end
-        object RUN_UnlockObjects: TButton
-          Left = 8
-          Top = 48
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 11
-          OnClick = RUN_UnlockObjectsClick
-        end
-        object RUN_Fixup3D: TButton
-          Left = 8
-          Top = 32
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 12
-          OnClick = RUN_Fixup3DClick
-        end
-        object RUN_RemovePin1Dots: TButton
-          Left = 8
-          Top = 16
-          Width = 24
-          Height = 16
-          Caption = '>'
-          TabOrder = 13
-          OnClick = RUN_ResetGridStyleClick
-        end
+      end
+      object CHK_RebuildSilkscreenlayer: TCheckBox
+        Left = 536
+        Top = 344
+        Width = 228
+        Height = 16
+        Caption = 'Rebuild Silkscreen Layer (experimental)'
+        Checked = True
+        State = cbChecked
+        TabOrder = 9
+      end
+      object CHK_ApplyDefaultStack: TCheckBox
+        Left = 536
+        Top = 24
+        Width = 196
+        Height = 16
+        Caption = 'Apply Default Stack'
+        Checked = True
+        State = cbChecked
+        TabOrder = 10
+      end
+      object CHK_RemoveUnusedMech: TCheckBox
+        Left = 536
+        Top = 40
+        Width = 196
+        Height = 16
+        Caption = 'Remove Unused Mechanicals'
+        Checked = True
+        State = cbChecked
+        TabOrder = 11
+      end
+      object CHK_Fixup3D: TCheckBox
+        Left = 536
+        Top = 424
+        Width = 196
+        Height = 16
+        Caption = 'Fixup 3D models and data'
+        Checked = True
+        State = cbChecked
+        TabOrder = 12
+      end
+      object CHK_ProcessDesignator: TCheckBox
+        Left = 536
+        Top = 216
+        Width = 196
+        Height = 16
+        Caption = 'Process DESIGNATOR string'
+        Checked = True
+        State = cbChecked
+        TabOrder = 13
+      end
+      object CHK_MarkPin1Courtyard: TCheckBox
+        Left = 560
+        Top = 280
+        Width = 172
+        Height = 16
+        Caption = 'Mark Pin1 on Courtyard'
+        TabOrder = 14
+      end
+      object CHK_RemovePin1Dots: TCheckBox
+        Left = 536
+        Top = 376
+        Width = 120
+        Height = 16
+        Caption = 'Remove Pin 1 Dots'
+        Checked = True
+        State = cbChecked
+        TabOrder = 15
+      end
+      object CHK_MarkPin1Assembly: TCheckBox
+        Left = 560
+        Top = 184
+        Width = 276
+        Height = 16
+        Caption = 'Mark Pin 1 on Assembly'
+        Checked = True
+        State = cbChecked
+        TabOrder = 16
+      end
+      object ComboBox1: TComboBox
+        Left = 696
+        Top = 277
+        Width = 116
+        Height = 21
+        Style = csDropDownList
+        ItemIndex = 1
+        TabOrder = 17
+        Text = '1 - Arrow to edge'
+        Items.Strings = (
+          '0 - None'
+          '1 - Arrow to edge'
+          '2 - Arrow to Center'
+          '3 - Box'
+          '4 - Box + diagonal')
+      end
+      object CHK_ApplyRoundSMD: TCheckBox
+        Left = 536
+        Top = 120
+        Width = 196
+        Height = 16
+        Caption = 'Round SMD Pads'
+        Checked = True
+        State = cbChecked
+        TabOrder = 18
+      end
+      object CHK_RemoveUnusedCopper: TCheckBox
+        Left = 536
+        Top = 56
+        Width = 196
+        Height = 16
+        Caption = 'Remove Unused Copper'
+        Checked = True
+        State = cbChecked
+        TabOrder = 19
+      end
+      object RUN_ApplyDefaultStack: TButton
+        Left = 496
+        Top = 24
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 20
+        OnClick = RUN_ApplyDefaultStackClick
+      end
+      object RUN_RemoveUnusedMech: TButton
+        Left = 496
+        Top = 40
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 21
+        OnClick = RUN_RemoveUnusedMechClick
+      end
+      object RUN_RemoveUnusedCopper: TButton
+        Left = 496
+        Top = 56
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 22
+      end
+      object RUN_ApplyIPC2221: TButton
+        Left = 496
+        Top = 104
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 23
+      end
+      object RUN_ApplyRoundSMD: TButton
+        Left = 496
+        Top = 120
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 24
+      end
+      object RUN_RebuildAssemblyLayer: TButton
+        Left = 496
+        Top = 168
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 25
+      end
+      object RUN_MarkPin1Assembly: TButton
+        Left = 496
+        Top = 184
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 26
+      end
+      object RUN_ProcessDesignator: TButton
+        Left = 496
+        Top = 216
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 27
+      end
+      object RUN_ResizeAssemblyLayer: TButton
+        Left = 496
+        Top = 200
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 28
+      end
+      object RUN_ResizeCourtyard: TButton
+        Left = 496
+        Top = 296
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 29
+      end
+      object RUN_MarkPin1Courtyard: TButton
+        Left = 496
+        Top = 280
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 30
+      end
+      object RUN_RebuildCourtyardLayer: TButton
+        Left = 496
+        Top = 264
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 31
+      end
+      object RUN_RemovePin1Dots: TButton
+        Left = 496
+        Top = 376
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 32
+      end
+      object RUN_ResizeSilkscreenLayer: TButton
+        Left = 496
+        Top = 360
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 33
+      end
+      object RUN_RebuildSilkscreenlayer: TButton
+        Left = 496
+        Top = 344
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 34
+      end
+      object RUN_Fixup3D: TButton
+        Left = 496
+        Top = 424
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 35
+      end
+      object CHK_UnlockObjects: TCheckBox
+        Left = 536
+        Top = 440
+        Width = 196
+        Height = 16
+        Caption = 'Unlock Objects'
+        Checked = True
+        State = cbChecked
+        TabOrder = 36
+      end
+      object RUN_UnlockObjects: TButton
+        Left = 496
+        Top = 440
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 37
+      end
+      object CHK_ResetGridStyle: TCheckBox
+        Left = 536
+        Top = 456
+        Width = 196
+        Height = 16
+        Caption = 'Reset Grid Style'
+        Checked = True
+        State = cbChecked
+        TabOrder = 38
+      end
+      object RUN_ResetGridStyle: TButton
+        Left = 496
+        Top = 456
+        Width = 24
+        Height = 16
+        Caption = '>'
+        TabOrder = 39
+        OnClick = RUN_ResetGridStyleClick
       end
     end
     object TabSheet2: TTabSheet
       Caption = 'Hole Wizard'
-      ExplicitWidth = 819
-      ExplicitHeight = 497
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object GroupBox1: TGroupBox
         Left = 8
         Top = 0
@@ -1253,8 +1196,10 @@ object Form1: TForm1
     end
     object TabSheet3: TTabSheet
       Caption = 'Thermal Wizard'
-      ExplicitWidth = 819
-      ExplicitHeight = 497
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 0
+      ExplicitHeight = 0
       object Shape70: TShape
         Left = 12
         Top = 194
@@ -1841,8 +1786,10 @@ object Form1: TForm1
     end
     object Settings: TTabSheet
       Caption = 'QFN wizard'
-      ExplicitWidth = 819
-      ExplicitHeight = 497
+      ExplicitLeft = 0
+      ExplicitTop = 0
+      ExplicitWidth = 660
+      ExplicitHeight = 0
       object Shape98: TShape
         Left = 220
         Top = 42
@@ -2420,13 +2367,12 @@ object Form1: TForm1
     end
     object TabSheet4: TTabSheet
       Caption = 'Settings'
-      ExplicitWidth = 823
       ExplicitHeight = 454
       object GroupBox10: TGroupBox
-        Left = 248
-        Top = 240
+        Left = 8
+        Top = 8
         Width = 236
-        Height = 82
+        Height = 74
         Caption = 'Designator (magic string)'
         TabOrder = 0
         object settings_rdio_adddesignator: TRadioButton
@@ -2439,7 +2385,7 @@ object Form1: TForm1
         end
         object settings_rdio_removedesignator: TRadioButton
           Left = 16
-          Top = 56
+          Top = 48
           Width = 80
           Height = 16
           Caption = 'Remove'
@@ -2447,35 +2393,27 @@ object Form1: TForm1
           TabOrder = 1
           TabStop = True
         end
-        object settings_rdio_cleanup: TRadioButton
-          Left = 16
-          Top = 40
-          Width = 156
-          Height = 16
-          Caption = 'Cleanup and Autosize'
-          TabOrder = 2
-        end
       end
       object GroupBox11: TGroupBox
-        Left = 248
-        Top = 136
+        Left = 256
+        Top = 200
         Width = 236
-        Height = 98
+        Height = 106
         Caption = 'Assembly Layer'
         TabOrder = 1
         object Label1: TLabel
           Left = 8
           Top = 24
-          Width = 104
+          Width = 77
           Height = 13
-          Caption = 'Body Line Width (mm)'
+          Caption = 'Line Width (mm)'
         end
         object Label22: TLabel
-          Left = 8
-          Top = 46
-          Width = 94
+          Left = 88
+          Top = 70
+          Width = 77
           Height = 13
-          Caption = 'Pin Line Width (mm)'
+          Caption = 'Line Width (mm)'
         end
         object txt_assemblylinewidth: TEdit
           Left = 172
@@ -2485,20 +2423,40 @@ object Form1: TForm1
           TabOrder = 0
           Text = '0.05'
         end
+        object chk_rebuildassembly: TCheckBox
+          Left = 8
+          Top = 48
+          Width = 128
+          Height = 16
+          Caption = 'Rebuild'
+          Checked = True
+          State = cbChecked
+          TabOrder = 1
+        end
+        object chk_markassemblypins: TCheckBox
+          Left = 8
+          Top = 70
+          Width = 68
+          Height = 16
+          Caption = 'Mark Pins'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+        end
         object txt_AssemblyPinLineWith: TEdit
           Left = 172
-          Top = 46
+          Top = 70
           Width = 60
           Height = 21
-          TabOrder = 1
+          TabOrder = 3
           Text = '0.05'
         end
       end
       object GroupBox12: TGroupBox
-        Left = 248
-        Top = 0
+        Left = 256
+        Top = 8
         Width = 236
-        Height = 130
+        Height = 74
         Caption = 'Courtyard'
         TabOrder = 2
         object Label19: TLabel
@@ -2514,20 +2472,6 @@ object Form1: TForm1
           Width = 95
           Height = 13
           Caption = 'Boundary Gap (mm)'
-        end
-        object Label59: TLabel
-          Left = 8
-          Top = 72
-          Width = 99
-          Height = 13
-          Caption = 'Centroid Width (mm)'
-        end
-        object Label60: TLabel
-          Left = 8
-          Top = 96
-          Width = 136
-          Height = 13
-          Caption = 'Centroid Spoke Length (mm)'
         end
         object txt_courtyardwidth: TEdit
           Left = 172
@@ -2545,28 +2489,12 @@ object Form1: TForm1
           TabOrder = 1
           Text = '0.25'
         end
-        object txt_CentroidWidth: TEdit
-          Left = 172
-          Top = 72
-          Width = 60
-          Height = 21
-          TabOrder = 2
-          Text = '0.05'
-        end
-        object TXT_CentroidSpoke: TEdit
-          Left = 172
-          Top = 96
-          Width = 60
-          Height = 21
-          TabOrder = 3
-          Text = '0.25'
-        end
       end
       object GroupBox13: TGroupBox
-        Left = 496
-        Top = 136
+        Left = 256
+        Top = 82
         Width = 236
-        Height = 98
+        Height = 120
         Caption = 'Silkscreen'
         TabOrder = 3
         object Label21: TLabel
@@ -2578,7 +2506,7 @@ object Form1: TForm1
         end
         object Label24: TLabel
           Left = 8
-          Top = 48
+          Top = 96
           Width = 145
           Height = 13
           Caption = 'Silk-to Copper Clearance (mm)'
@@ -2591,26 +2519,36 @@ object Form1: TForm1
           TabOrder = 0
           Text = '0.15'
         end
-        object txt_silktocopper: TEdit
-          Left = 172
-          Top = 48
-          Width = 60
-          Height = 21
-          TabOrder = 1
-          Text = '0.15'
-        end
-        object chk_wipesilkscreen: TCheckBox
+        object chk_rebuildsilkscreen: TCheckBox
           Left = 8
           Top = 72
           Width = 128
           Height = 16
-          Caption = 'Wipe'
+          Caption = 'Rebuild (Experimental)'
+          TabOrder = 1
+        end
+        object txt_silktocopper: TEdit
+          Left = 172
+          Top = 96
+          Width = 60
+          Height = 21
           TabOrder = 2
+          Text = '0.15'
+        end
+        object chk_wipesilkscreen: TCheckBox
+          Left = 8
+          Top = 48
+          Width = 128
+          Height = 16
+          Caption = 'Wipe'
+          Checked = True
+          State = cbChecked
+          TabOrder = 3
         end
       end
       object GroupBox14: TGroupBox
-        Left = 232
-        Top = 352
+        Left = 8
+        Top = 304
         Width = 236
         Height = 130
         Caption = 'Pin 1 Indicator'
@@ -2625,53 +2563,97 @@ object Form1: TForm1
           State = cbChecked
           TabOrder = 0
         end
+        object chk_pin1markoncourtyard: TCheckBox
+          Left = 8
+          Top = 48
+          Width = 120
+          Height = 16
+          Caption = 'Mark on Courtyard'
+          TabOrder = 1
+        end
+        object chk_pin1markonassembly: TCheckBox
+          Left = 8
+          Top = 72
+          Width = 212
+          Height = 16
+          Caption = 'Mark on Assembly (if assembly enabled)'
+          Checked = True
+          State = cbChecked
+          TabOrder = 2
+        end
+        object cmb_pin1style: TComboBox
+          Left = 8
+          Top = 101
+          Width = 168
+          Height = 21
+          Style = csDropDownList
+          ItemIndex = 1
+          TabOrder = 3
+          Text = '1 - Arrow to edge'
+          Items.Strings = (
+            '0 - None'
+            '1 - Arrow to edge'
+            '2 - Arrow to Center'
+            '3 - Box'
+            '4 - Box + diagonal')
+        end
       end
       object GroupBox15: TGroupBox
-        Left = 0
-        Top = 258
+        Left = 8
+        Top = 90
         Width = 236
-        Height = 72
+        Height = 128
         Caption = 'Thru-Hole Pads'
         TabOrder = 5
         object Label36: TLabel
           Left = 16
-          Top = 16
+          Top = 56
           Width = 56
           Height = 13
           Caption = 'Pin 1 Shape'
         end
+        object chk_apply2221: TCheckBox
+          Left = 16
+          Top = 24
+          Width = 196
+          Height = 16
+          Caption = 'Apply IPC2221 Pad sizing'
+          Checked = True
+          State = cbChecked
+          TabOrder = 0
+        end
         object settings_rdio_pin1_leave: TRadioButton
           Left = 88
-          Top = 16
+          Top = 56
           Width = 136
           Height = 16
           Caption = 'Leave Shape As-Is'
           Checked = True
-          TabOrder = 0
+          TabOrder = 1
           TabStop = True
         end
         object settings_rdio_pin1_square: TRadioButton
           Left = 88
-          Top = 32
+          Top = 72
           Width = 136
           Height = 16
           Caption = 'Force Square'
-          TabOrder = 1
+          TabOrder = 2
         end
         object settings_rdio_pin1_round: TRadioButton
           Left = 88
-          Top = 48
+          Top = 88
           Width = 136
           Height = 16
           Caption = 'Force Round'
-          TabOrder = 2
+          TabOrder = 3
         end
       end
       object GroupBox17: TGroupBox
-        Left = 496
-        Top = 0
+        Left = 256
+        Top = 306
         Width = 236
-        Height = 130
+        Height = 128
         Caption = 'Soldermask Clearance'
         TabOrder = 6
         object Label29: TLabel
@@ -2736,15 +2718,15 @@ object Form1: TForm1
         end
       end
       object GroupBox16: TGroupBox
-        Left = 0
-        Top = 160
+        Left = 504
+        Top = 8
         Width = 236
-        Height = 98
+        Height = 194
         Caption = 'SMT Pads'
         TabOrder = 7
         object Label5: TLabel
-          Left = 16
-          Top = 64
+          Left = 8
+          Top = 96
           Width = 108
           Height = 13
           Caption = 'Corner Rounding (mm)'
@@ -2761,7 +2743,7 @@ object Form1: TForm1
         end
         object RadioButton2: TRadioButton
           Left = 16
-          Top = 40
+          Top = 48
           Width = 80
           Height = 16
           Caption = 'Leave As is'
@@ -2769,7 +2751,7 @@ object Form1: TForm1
         end
         object Edit5: TEdit
           Left = 172
-          Top = 64
+          Top = 96
           Width = 60
           Height = 21
           TabOrder = 2
@@ -2777,10 +2759,10 @@ object Form1: TForm1
         end
       end
       object GroupBox18: TGroupBox
-        Left = 0
-        Top = 0
+        Left = 504
+        Top = 208
         Width = 236
-        Height = 154
+        Height = 194
         Caption = 'Layer assignment'
         TabOrder = 8
         object Label48: TLabel
@@ -2818,7 +2800,7 @@ object Form1: TForm1
           Height = 13
           Caption = 'Designator'
         end
-        object txt_layers_3dbody: TEdit
+        object Edit8: TEdit
           Left = 172
           Top = 24
           Width = 60
@@ -2826,7 +2808,7 @@ object Form1: TForm1
           TabOrder = 0
           Text = '2'
         end
-        object txt_layers_assembly: TEdit
+        object Edit9: TEdit
           Left = 172
           Top = 48
           Width = 60
@@ -2834,7 +2816,7 @@ object Form1: TForm1
           TabOrder = 1
           Text = '5'
         end
-        object txt_layers_courtyard: TEdit
+        object Edit10: TEdit
           Left = 172
           Top = 72
           Width = 60
@@ -2842,7 +2824,7 @@ object Form1: TForm1
           TabOrder = 2
           Text = '3'
         end
-        object Edit11txt_layers_centroid: TEdit
+        object Edit11: TEdit
           Left = 172
           Top = 96
           Width = 60
@@ -2850,7 +2832,7 @@ object Form1: TForm1
           TabOrder = 3
           Text = '3'
         end
-        object txt_layers_designator: TEdit
+        object Edit12: TEdit
           Left = 172
           Top = 120
           Width = 60
@@ -2859,33 +2841,9 @@ object Form1: TForm1
           Text = '5'
         end
       end
-      object GroupBox19: TGroupBox
-        Left = 496
-        Top = 240
-        Width = 236
-        Height = 82
-        Caption = 'Paste Mask'
-        TabOrder = 9
-        object Label61: TLabel
-          Left = 8
-          Top = 24
-          Width = 134
-          Height = 13
-          Caption = 'Paste Mask Retraction (mm)'
-        end
-        object txt_PasteMaskRetraction: TEdit
-          Left = 172
-          Top = 24
-          Width = 60
-          Height = 21
-          TabOrder = 0
-          Text = '0.05'
-        end
-      end
     end
     object TabSheet5: TTabSheet
       Caption = 'SchLib PATCHER'
-      ExplicitWidth = 823
       ExplicitHeight = 454
       object Label32: TLabel
         Left = 16
@@ -3111,8 +3069,8 @@ object Form1: TForm1
     end
   end
   object MainMenu1: TMainMenu
-    Left = 865
-    Top = 512
+    Left = 689
+    Top = 520
     object NFile2: TMenuItem
       Caption = 'File'
       object NQuit1: TMenuItem

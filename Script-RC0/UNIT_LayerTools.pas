@@ -44,16 +44,16 @@ Procedure PCB_ImportMechLayerDefault;
           var
                FileName : String;
           begin
-               LogMSG('RUN : DefaultLayerStack');
                Board := PCBServer.GetCurrentPCBBoard;
-               if Board = nil then
-               begin
-                    LogMSG('ERR : No Board Selected');
-                    exit;
-               end;
+               if Board = nil then exit;
+
+               // This will open che ImportMechLayers File Dialog
+               // RunProcess ('PCB:ImportMechLayers');
+
+               //FileName := 'Filename='+(ExtractFilePath (Board.FlleName)) + 'Mech-Layers.stackup';
                FileName := 'Filename=c:\stack.Stackup';
+               // For Direct Import Without the File Dialog
                Client.SendMessage ('PCB:ImportMechLayers', FileName, 255, Client.CurrentView);
-               LogMSG('END : DefaultLayerStack');
 end;
 
 Procedure PCB_ImportMechLayerInfo_FromFile;
@@ -77,19 +77,11 @@ Procedure PCB_HideUnusedMechLayers;
           var
              PCBSysopts : IPCB_SystemOptions;
           begin
-               LogMSG('RUN : DefaultLayerStack');
                MaxMechLayers := 32;   // need to get this from options
                Board := PCBServer.GetCurrentPCBBoard;
-               if Board = nil then
-                begin
-                    LogMSG('ERR : No Board Selected');
-                    exit;
-               end;
+               if Board = nil then exit;
                PCBSysopts := PCBServer.SystemOptions;
-                begin
-                    LogMSG('ERR : No SysOptions');
-                    exit;
-               end;
+               if PCBSysopts = nil then exit;
                LayerStack := Board.Layerstack_v7;
                MechPairs := Board.MechanicalPairs;
                for x := 1 to MaxMechlayers do
@@ -101,7 +93,6 @@ Procedure PCB_HideUnusedMechLayers;
                end;
                Board.ViewManager_UpdateLayerTabs;
                Board.ViewManager_FullUpdate;
-               LogMSG('END : DefaultLayerStack');
 end;
 
 

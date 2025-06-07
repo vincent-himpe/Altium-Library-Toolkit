@@ -171,25 +171,8 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=USOYXEQY
 
-[Document8]
-DocumentPath=UNIT_Skeleton.pas
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
 [Generic_ScriptingSystem]
-StartProcName=LibrarianToolkit.pas>
+StartProcName=Librarian Toolkit 400.pas>
 
 [Generic_Watches]
 0=textobj
